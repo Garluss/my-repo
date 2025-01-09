@@ -1,0 +1,7 @@
+Hei, ville bare nevne at jeg ikke fikk tid til mye av generaliseringen som jeg ønsket. Blant annet i oppgaven om sensurering der jeg manuelt sørger for at ordet "fisk" ikke blir sensurert. Hvis mer tid, kunne jeg ha gjort slik at den ikke sensurer ord som bare inneholder sub-string "fis" for eksempel, men som ikke er ordet fis.
+
+I tillegg fikk jeg ikke tid til å se etter nøyaktighet i quizen når det gjalt tall. Dette kunne jeg lett ha gjort hvis jeg hadde brukt "if" for å sjekke om et spørsmål som involverer tall hadde blitt valgt, og derfra kunne jeg ha gjort den regningen med prosent.
+
+Jeg forventer ikke at du tar dette med i vurderingen din om min karakter, jeg er egentlig bare frustert på meg selv for at jeg ikke klarte å tenke rett under prøven.
+
+Takk for at du leste.

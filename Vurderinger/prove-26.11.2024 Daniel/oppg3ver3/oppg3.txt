@@ -1,0 +1,5 @@
+Gjorde slik at rektangelen fikk en tilfeldig høyde og bredde innen visse mål.
+Tenkte at dette kunne gjøre ting mer interessant siden:
+	1. Man blir eksponert til en større variasjon av figurer av ulike størrelser
+	2. Spiller blir litt mindre repetivt
+	3. Resultatet kommer mer ann på tilfeldighet, noe som gjør at man vil ønske å spille flere ganger for å oppnå et heldigere resultat.

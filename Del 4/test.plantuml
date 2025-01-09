@@ -1,0 +1,14 @@
+@startuml test
+
+class Person {
+    String navn
+    int alder
+    bursdag()
+}
+class Hund {
+    String farge
+}
+
+Person <|-- Hund
+
+@enduml

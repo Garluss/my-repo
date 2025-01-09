@@ -1,0 +1,55 @@
+<html>
+   <body>
+      <head>
+         <style>
+            body {background-color: rgb(255, 255, 255);}
+            h1   {color: blue; text-align: center; font-size:larger}
+            .center {
+               position: absolute;
+               top: 40%;
+               width: 100%;
+               text-align: center;
+            }
+            p    {
+               color: black; 
+               text-align: center; 
+               font-size: 30px;
+            }
+            form {
+               border: 2px solid rgb(0, 0, 0);
+               border-radius: 4px;
+               max-width: 300px;
+               margin: auto;
+               background-color: rgb(184, 184, 184);
+               margin-top: 300px;
+               padding: 50px;
+            }
+            input {
+               font-size: 20px;
+            }
+            a {
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+                font-size: 20px;
+                border: 2px solid rgb(43, 43, 43);
+                border-radius: 3px;
+                background-color: rgb(199, 177, 151);
+                max-width: 100px;
+                padding: 10px;
+                margin-top: 100px;
+                margin: auto;
+            }
+         </style>
+         <a href="/">Login</a>
+      </head>
+      <form action = "http://localhost:5000/signup" method = "post">
+         <p>Enter Username</p>
+         <p><input type = "text" name = "usern" maxlength="10" required/></p>
+         <p>Enter Password</p>
+         <p><input type = "password" name = "userp" maxlength="15" required/></p>
+         <p>Repeat Password</p>
+         <p><input type = "password" name = "userpc" required /></p>
+         <p><input type = "submit" value = "Submit"/></p>
+      </form>
+   </body>
+</html>

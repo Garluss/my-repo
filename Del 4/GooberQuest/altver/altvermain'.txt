@@ -1,0 +1,61 @@
+import pygame as pg
+from classes import *
+clock = pg.time.Clock()
+
+pg.init()
+
+wWidth = 600
+wHeight = 300
+window = pg.display.set_mode([wWidth, wHeight])
+
+font = pg.font.SysFont("Arial", 24)
+
+
+goober = Goober(50,50,"goober",window)
+sword = Item("simplesword")
+goober.equip(sword)
+
+tick = 0
+FPS = 60
+backwards = False
+
+contgame = True
+while contgame == True:
+    tick += 1
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            contgame = False
+    window.fill((255,255,255))
+
+    if tick % 10 == 0:
+        for instt in Sprite.instances:
+            instt.tick_animation()
+        tick = 0
+    pressed_keys = pg.key.get_pressed()
+    if goober.is_sprite_busy() == False:
+        if pressed_keys[pg.K_d]:
+            goober.x += 0.5
+            goober.set_state("walk")
+            backwards = False
+        if pressed_keys[pg.K_a]:
+            goober.x += -0.5
+            goober.set_state("walk")
+            backwards = True
+        if pressed_keys[pg.K_s]:
+            goober.y += 0.5
+            goober.set_state("walk")
+        if pressed_keys[pg.K_w]:
+            goober.y += -0.5
+            goober.set_state("walk")
+        if pressed_keys[pg.K_SPACE]:
+            goober.set_state("hit")
+        if True not in pressed_keys:
+            goober.set_state("idle")
+
+    goober.draw(28*3,28*3,backwards)
+
+
+    pg.display.flip()
+    clock.tick(FPS)
+
+pg.quit()

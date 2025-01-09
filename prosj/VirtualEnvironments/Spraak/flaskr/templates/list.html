@@ -1,0 +1,79 @@
+<html>
+   <body>
+      <head>
+         <style>
+            body {background-color: floralwhite;}
+            h1   {color: blue; text-align: center; font-size:larger}
+            .center {
+               position: absolute;
+               top: 40%;
+               width: 100%;
+               text-align: center;
+            }
+            p    {
+               color: black; 
+               text-align: center; 
+               font-size: 20px;
+               border: 2px solid red;
+               border-radius: 4px;
+               max-width: 500px;
+               margin: auto;
+               padding: 20px;
+               margin-top: 20px;
+               background-color: white;
+            }
+            .p2 {
+               font-size: 25px;
+               border: 0px;
+               text-align: center;
+            }
+            form {
+               max-width: 300px;
+               margin: auto;
+               background-color: powderblue;
+               margin-top: 20px;
+               padding: 30px;
+            }
+            div {
+               font-size: 30px;
+               text-align: center;
+            }
+            input {
+               font-size: 20px;
+               padding: 5px;
+               margin-top: 5px;
+            }
+         </style>
+      </head>
+      <form action = "http://localhost:5000/list" method = "post">
+         <div class="p2">Ord (norsk)</div>
+         <div><input type = "text" name = "on" size="25" /></div>
+         <div class="p2">Ord (engelsk)</div>
+         <div><input type = "text" name = "oa" size="25" /></div>
+         <div class="p2">Ordklasse</div>
+         <div><input type = "text" name = "ok" size="25"/></div>
+         <div class="p2"><input type = "submit" value = "Legg til ord"/></div>
+      </form>
+      <form action = "http://localhost:5000/list" method = "post">
+         <div class="p2">Ord (ID)</div>
+         <div><input type = "number" name = "sletto" size="25"/></div>
+         <div class="p2"><input type = "submit" value = "Slett ord"/></div>
+      </form>
+      <form action = "http://localhost:5000/list" method = "post">
+         <div class="p2">Ord (Filter)</div>
+         <div><input type = "text" name = "filtero" size="25"/></div>
+         <div class="p2"><input type = "submit" value = "Filtrer"/></div>
+      </form>
+      <script>
+         const dict = '{{dictjava|tojson}}';
+         const parsed = JSON.parse(dict)
+         for (let x in parsed) {
+            const para = document.createElement("p");
+            let [word, translation, type] = parsed[x];
+            para.innerText = "Ord: " + word + " =  " + translation + " (" + type + ")  ID:" + x;
+
+            document.body.appendChild(para);
+          }
+      </script>
+   </body>
+</html>

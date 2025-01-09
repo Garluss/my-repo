@@ -1,0 +1,98 @@
+<html>
+   <body>
+      <head>
+         <style>
+            body {background-color: rgb(255, 255, 255);}
+            h1   {color: blue; text-align: center; font-size:larger}
+            .center {
+               position: absolute;
+               top: 40%;
+               width: 100%;
+               text-align: center;
+            }
+            p    {
+               color: black; 
+               text-align: center; 
+               font-size: 30px;
+            }
+            form {
+               border: 2px solid rgb(0, 0, 0);
+               border-radius: 4px;
+               max-width: 300px;
+               margin: auto;
+               background-color: rgb(184, 184, 184);
+               margin-top: 100px;
+               padding: 50px;
+            }
+            input {
+               font-size: 20px;
+            }
+            a {
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+                font-size: 20px;
+                border: 2px solid rgb(43, 43, 43);
+                border-radius: 3px;
+                background-color: rgb(199, 177, 151);
+                max-width: 100px;
+                padding: 10px;
+                margin-top: 100px;
+                margin: auto;
+            }
+            div {
+               border: 2px solid rgb(43, 43, 43);
+               border-radius: 3px;
+               font-size: 25px;
+               background-color: rgb(199, 177, 151);
+               max-width: 250px;
+               text-align: center;
+               margin: auto;
+               margin-top: 10px;
+            }
+         </style>
+         <a href="/logout">Logout</a>
+      </head>
+      <p>ID: {{id}}</p>  
+      <form action = "http://localhost:5000/config" method = "post">
+         <p>Search (Name or ID)</p>
+         <p><input type = "text" name = "srch" /></p>
+         <p><input type = "submit" value = "Search"/></p>
+      </form>
+         <script>
+            const dict = '{{dictjava|tojson}}';
+            const parsed = JSON.parse(dict)
+            function clicker() {
+               const nodelist = this.parentNode.childNodes;
+               const text = nodelist[0].innerHTML;
+               const id = text.substr(text.length-6);
+               const form = document.createElement("form");
+               form.method = 'post'
+               form.action = '/edit'
+               const hiddenField = document.createElement('input');
+               hiddenField.type = 'hidden';
+               hiddenField.name = 'key';
+               hiddenField.value = id;
+               form.appendChild(hiddenField);
+               document.body.appendChild(form);
+               form.submit();
+            }
+            for (let x in parsed) {
+               const para = document.createElement("div");
+               const divver = document.createElement("div");
+               const but = document.createElement("button");
+               const buttext = document.createTextNode("Edit");
+               let [name, password, balance] = parsed[x];
+               if (x != "000000") {
+                  para.innerText = name + " Balance: " + balance +  "  ID:" + x;
+
+                  but.appendChild(buttext);
+                  but.onclick = clicker;
+
+                  divver.appendChild(para);
+                  divver.appendChild(but);
+                  document.body.appendChild(divver);
+               }
+            }
+         </script>
+   </body>
+</html>
