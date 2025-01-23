@@ -2,13 +2,17 @@ from flask import Flask, current_app, render_template, request, redirect, sessio
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 from db import User, users, load_database, add_user, add_balance, remove_balance, set_balance, delete_account
 from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
+import os
+from dotenv import load_dotenv
+
 
 # To-Do:
-# Add password hash
+# DONE - Change and encrypt secret key
 
 
 app = Flask(__name__)
-app.secret_key = "key1"
+app.secret_key = uuid.uuid4().hex
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -75,7 +79,8 @@ def login():
         username = request.form['usern']
         password = request.form['userp']
         load_database()
-        if username == "admin" and password == "_secretp4ss":
+        load_dotenv()
+        if username == "admin" and check_password_hash(os.getenv('AP'), password) == True:
                 user = User()
                 user.id = "000000"
                 login_user(user)
