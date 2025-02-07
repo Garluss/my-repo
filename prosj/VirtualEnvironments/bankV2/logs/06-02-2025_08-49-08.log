@@ -1,0 +1,4 @@
+Thu, 06 Feb 2025 09:49:27 INFO»  Administrator logget inn ved 127.0.0.1
+Thu, 06 Feb 2025 09:49:49 INFO»  Admin 127.0.0.1 fjernet 20 PEC i konto fra id 179168, (original pengesum: 100.0 PEC)
+Thu, 06 Feb 2025 09:51:51 INFO»  Admin 127.0.0.1 endret pengesum av bruker 562842 til 1000 PEC fra 0.0 PEC
+Thu, 06 Feb 2025 09:52:10 INFO»  Admin 127.0.0.1 slettet bruker med id ['coolguy', 'pbkdf2:sha1:600000$ToZUloktnvoVwrAr$024918fcaa2138ee6b5a7460ffe32fe2f58931fa', 1000.0], med pengesum 1000.0

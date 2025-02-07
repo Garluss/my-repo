@@ -1,0 +1,40 @@
+<html>
+   <body>
+      <head>
+         <style>
+            body {background-color: rgb(255, 255, 255);}
+            h1   {color: blue; text-align: center; font-size:larger}
+            .center {
+               position: absolute;
+               top: 40%;
+               width: 100%;
+               text-align: center;
+            }
+            p    {
+               color: black; 
+               text-align: center; 
+               font-size: 30px;
+            }
+            form {
+               border: 2px solid rgb(0, 0, 0);
+               border-radius: 4px;
+               max-width: 300px;
+               margin: auto;
+               background-color: rgb(184, 184, 184);
+               margin-top: 300px;
+               padding: 50px;
+            }
+            input {
+               font-size: 20px;
+            }
+         </style>
+      </head>
+      <form action = "http://localhost:5000/" method = "post">
+         <p>Brukernavn</p>
+         <p><input type = "text" name = "usern" required/></p>
+         <p>Passord</p>
+         <p><input type = "password" name = "userp" required/></p>
+         <p><input type = "submit" value = "Log Inn"/></p>
+      </form>
+   </body>
+</html>

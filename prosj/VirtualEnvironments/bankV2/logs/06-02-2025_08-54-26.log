@@ -1,0 +1,6 @@
+Thu, 06 Feb 2025 09:54:44 INFO»  Administrator logget inn ved 127.0.0.1
+Thu, 06 Feb 2025 09:54:51 INFO»  Admin 127.0.0.1 la 70 PEC til konto med id 179168, (original pengesum: 80.0 PEC)
+Thu, 06 Feb 2025 09:55:21 INFO»  Skapte bruker med id 585719 og navn test12
+Thu, 06 Feb 2025 09:55:26 INFO»  Bruker med id 585719 logget inn.
+Thu, 06 Feb 2025 09:56:02 INFO»  Administrator logget inn ved 127.0.0.1
+Thu, 06 Feb 2025 09:56:06 INFO»  Admin 127.0.0.1 slettet bruker med id 585719, med pengesum 0.0
