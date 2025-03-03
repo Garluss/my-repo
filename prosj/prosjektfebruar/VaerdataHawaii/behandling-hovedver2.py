@@ -2,6 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 import datetime as dt
+import mplcursors
 
 filnavn = "data.csv"
 with open(filnavn,mode="r") as fil:
@@ -38,12 +39,21 @@ plt.subplots_adjust(bottom=0.25)
 
 plt.scatter(xpoints,ypoints,c=ypoints,cmap="viridis",s=3)
 plt.title("Temperatur i Hawaii (Honolulu Lufthavn)")
-plt.xlabel("Antall dager fra 1940 14. mai (1940 - 2025)")
-plt.ylabel("Temperatur i celsius (fra fahrenheit)")
+plt.xlabel("Antall dager fra 1940 15. mai (1940 - 2025)")
+plt.ylabel("Gjennomsnittstemperatur i celsius (fra fahrenheit)")
 plt.xlim(0,500)
 plt.ylim(15,35)
 plt.colorbar()
+cursor = mplcursors.cursor(hover=True)
+
+def text_display(sel):
+    date = list(behandlet)[sel.index]
+    value = round(ypoints[sel.index],1)
+    sel.annotation.set_text(f"Dato: {date}, Temp.: {value} C")
+cursor.connect("add", text_display)
+
 text = plt.figtext(0.15,0.05,"test")
+
 
 slider_color = 'White'
  
