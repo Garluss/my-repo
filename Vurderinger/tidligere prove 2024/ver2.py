@@ -14,33 +14,16 @@ with open(filnavn, encoding="utf-8") as fil:
     innhold = csv.reader(fil,delimiter=",")
     overskrifter = next(innhold)
 
-    ukenumre = []
+    info = []
     for i in innhold:
-        ukenumre.append(uke(i[1]))
+        info.append((uke(i[1]),i[4]))
     
     uketall = []
-    for i in ukenumre:
-        if i in uketall:
+    for i in info:
+        if i[0] in uketall:
             continue
         else:
-            uketall.append(i)
-
-    antall = []
-    for i in uketall:
-        tall = ukenumre.count(i)
-        antall.append(tall)
-    print(antall)
-
-#like mange entries hver uke?
-
-fig, ax = plt.subplots()
-
-bar_colors = ['tab:red', 'tab:blue', 'tab:orange']
-
-ax.bar(uketall, antall, label=uketall, color=bar_colors)
-
-ax.set_ylabel('Antall løp i uke')
-ax.set_title('Løp i ulike uker')
-ax.legend(title='Farge')
-
-plt.show()
+            uketall.append(i[0])
+    
+    print(uketall)
+    print(info[:10])

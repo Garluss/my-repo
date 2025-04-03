@@ -1,0 +1,98 @@
+import math as m
+import pygame as pg
+from pygame.locals import (K_UP, K_DOWN,K_LEFT,K_RIGHT)
+pg.init()
+
+wWidth = 1000
+wHeight = 500
+window = pg.display.set_mode([wWidth, wHeight])
+window_rect = pg.Rect(0,0,wWidth,wHeight)
+
+font = pg.font.SysFont("Arial", 24)
+
+class Entity():
+    entities = []
+    def __init__(self, x, y, height, width, windowobject):
+        if self.__class__.__name__ == "Entity":
+            Entity.entities.append(self)
+        self.x = x
+        self.y = y
+        self.windowobject = windowobject
+        self.height = height
+        self.width = width
+        self.rect = pg.Rect(self.x,self.y,self.width,self.height)
+    def draw(self):
+        pg.draw.rect(self.windowobject, (0,0,0), self.rect)
+
+class Player(Entity):
+    def __init__(self, x, y, height, width, windowobject):
+        super().__init__(x,y,height,width,windowobject)
+        self.v_x = 0
+        self.v_y = 0
+        self.j_p = 0
+        self.on_ground = False
+    def jump(self):
+        if self.on_ground == True:
+            self.j_p = 7
+    def update(self):
+        if self.check_x() != False: #uoptimalt å sjekke x og y for seg selv, men det får gå
+            self.x += self.v_x
+        if self.check_y() != False: #
+            self.y += self.v_y
+            self.on_ground = False
+        else:
+            self.on_ground = True
+        self.rect.update(self.x,self.y,self.width,self.height) #update rect position
+        self.v_x = 0
+        if round(self.j_p,1) != 0.0:
+            print(self.j_p)
+            self.j_p += -0.1
+        self.v_y = -self.j_p + 0.3
+    def check_x(self):
+        x = self.x + self.v_x
+        rect = pg.Rect(x,self.y,self.width,self.height)
+        for i in Entity.entities:
+            if rect.colliderect(i.rect) == True:
+                return False
+        if window_rect.contains(rect) == False:
+            return False
+    def check_y(self):
+        y = self.y + self.v_y
+        rect = pg.Rect(self.x,y,self.width,self.height)
+        for i in Entity.entities:
+            if rect.colliderect(i.rect) == True:
+                return False
+        if window_rect.contains(rect) == False:
+            return False
+
+
+
+block1 = Entity(50,400,10,300,window)
+player = Player(190,30,30,30,window)
+
+print(Entity.entities)
+
+contgame = True
+while contgame == True:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            contgame = False
+
+    pressed_keys = pg.key.get_pressed()
+
+    if pressed_keys[K_LEFT]:
+        player.v_x = -0.5
+    if pressed_keys[K_RIGHT]:
+        player.v_x = 0.5
+    if pressed_keys[K_UP]:
+        player.jump()
+
+    player.update()
+
+    window.fill((255,255,255))
+
+    block1.draw()
+    player.draw()
+    pg.display.flip()
+    
+pg.quit()
