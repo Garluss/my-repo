@@ -29,9 +29,10 @@ def load_database():
 def finn_id(ord):
     filterres = []
     print(norai)
-    for x in norai:
-        if ord in norai[x][0]:
-            filterres.append(x)
+    if ord != "":
+        for x in norai:
+            if ord in norai[x][0]:
+                filterres.append(x)
     return filterres
 
 ordtyper = ["verb","adjektiv","substantiv","adverb","pronomen","determinativ","konjunksjon","subjunksjon","preposisjon","interjeksjon"]
@@ -93,14 +94,14 @@ def list():
             load_database()
             legg_til_norai(ordn,orda,ordk)
             load_database()
-            return render_template("list.html", dictjava=norai)
+            return render_template("list.html", dictjava={})
         except KeyError:
             try:
                 slettord = request.form["sletto"]
                 load_database()
                 slett_ord_norai(slettord)
                 load_database()
-                return render_template("list.html", dictjava=norai)
+                return render_template("list.html", dictjava={})
             except KeyError:
                 filterord = request.form["filtero"]
                 liste = []
@@ -110,15 +111,13 @@ def list():
                 if len(liste) > 0:
                     lagre = {}
                     for tall in liste:
-                        print(tall)
                         lagre[tall] = norai[tall]
-                        print(lagre)
                     return render_template("list.html", dictjava=lagre)
                 else:
-                    return render_template("list.html", dictjava=norai)
+                    return render_template("list.html", dictjava={})
     elif "logged_in" in session:
         load_database()
-        return render_template("list.html", dictjava=norai)
+        return render_template("list.html", dictjava={})
     else:
         return "Invalid credentials."
 
