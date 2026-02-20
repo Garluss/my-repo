@@ -11,7 +11,7 @@ def cls():
 def bil(cls):
     print("\nFunction Setup")
     bil = Bil()
-    yield bil
+    yield bil #returnerer og pauser, fortsetter herfra senere
     print("\nFunction Teardown")
 
 class TestBil:
